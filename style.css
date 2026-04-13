@@ -1,0 +1,187 @@
+/* ===== RESET (Сброс стилей) ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== BODY ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #F4F6F9;
+    color: #222;
+    line-height: 1.6;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: #fff;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #444;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+nav a:hover,
+nav a.active {
+    color: #FF6C00;
+}
+
+/* ===== VIDEOS PAGE CONTAINER ===== */
+.videos-page {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.videos-page h1 {
+    margin-bottom: 30px;
+    font-size: 32px;
+    color: #333;
+}
+
+/* ===== SEASON SECTION ===== */
+.season {
+    margin-bottom: 20px;
+    border-radius: 14px;
+    overflow: hidden; /* Чтобы контент не вылезал за границы скругления */
+}
+
+.season-header {
+    background: linear-gradient(135deg, #FF6C00, #ff8c00);
+    color: #fff;
+    padding: 20px 25px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s, transform 0.2s;
+    user-select: none;
+    position: relative;
+    z-index: 2;
+}
+
+.season-header:hover {
+    box-shadow: 0 5px 15px rgba(255,108,0,0.3);
+}
+
+.season-header.active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.arrow {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.season-header.active .arrow {
+    transform: rotate(90deg);
+}
+
+/* ===== EPISODES ACCORDION CONTENT ===== */
+.episodes-container {
+    max-height: 0; /* Управляется через JS */
+    overflow: hidden;
+    background: #fff;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+
+.episodes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 25px;
+    
+    /* Начальное состояние для анимации появления */
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Класс, который добавляет твой JS при клике */
+.episodes.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== EPISODE CARD ===== */
+.episode-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: 0.3s;
+}
+
+.episode-card:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border-color: #FF6C00;
+}
+
+.episode-card h3 {
+    font-size: 17px;
+    color: #444;
+}
+
+/* ===== VIDEO PLAYER ===== */
+video {
+    width: 100%;
+    height: auto; /* Позволяет видео занять нужную высоту */
+    aspect-ratio: 16 / 9; /* Соотношение сторон */
+    background: #000;
+    border-radius: 8px;
+    display: block; /* Убирает лишние отступы снизу */
+}
+
+/* ===== FOOTER ===== */
+footer {
+    margin-top: 60px;
+    padding: 40px;
+    text-align: center;
+    background: #fff;
+    border-top: 1px solid #eee;
+}
+
+footer a {
+    color: #FF6C00;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ===== RESPONSIVE (Адаптация) ===== */
+@media (max-width: 768px) {
+    .videos-page {
+        padding: 0 15px;
+    }
+    
+    .episodes {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    header {
+        padding: 15px 20px;
+    }
+}
